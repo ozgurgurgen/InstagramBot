@@ -1,0 +1,33 @@
+﻿var scrollHeightEnd = 0;
+var isFinish = false;
+var myInterval = setInterval(function(){
+    loadingSvg = document.querySelector("div[data-visualcompletion=loading-state]")
+    scrollDiv = document.querySelector("div > div > div > div > div > div > div > div._aano")
+    scrollHeight = scrollDiv.scrollHeight
+    scrollDiv.scrollTo(0,scrollHeight)    
+    console.log("scrolling")
+    if(scrollHeightEnd == scrollHeight && loadingSvg == null)
+    {
+        clearInterval(myInterval);
+        console.log("scrolled")
+        isFinish = true;
+
+        liste = ''
+        listLenght = document.querySelector("div > div > div > div > div > div > div > div._aano").childNodes[0].childNodes[0].childNodes.length
+        for(var i = 0; i<listLenght;i++)
+        {
+            itemim = document.querySelector("div > div > div > div > div > div > div > div._aano").childNodes[0].childNodes[0].childNodes[i].innerText.split('\n')[0] + ','
+            console.log(itemim)
+            if(itemim != null)
+            {
+                liste += itemim;
+            }
+           
+        }
+        newElement = document.createElement('p')
+        newElement.setAttribute('id','takipler')
+        newElement.innerText = liste;
+        document.body.appendChild(newElement)
+    }
+    scrollHeightEnd = scrollHeight;
+},1000);

@@ -1,0 +1,29 @@
+﻿const interval = 5000;
+    butonClicked = false;
+
+	   var readyStateCheckInterval = setInterval(function() {
+	   if (document.readyState === "complete") {
+		unfollow();
+	   }
+
+	}, 1000);
+
+	
+
+
+    function unfollow()
+    {
+        isDialogOpen = document.querySelector("div[role = dialog]")
+        isUnfollowButton = document.querySelector("div > span > span._abgm._abn8 > button").innerText == ''
+        if(!butonClicked && isUnfollowButton) 
+        {
+            document.querySelector("div > span > span._abgm._abn8 > button").click();
+            butonClicked = true;
+        }
+        if(isDialogOpen != null) 
+        {
+            document.querySelector("div[role = dialog]").firstChild.firstChild.firstChild.firstChild.lastChild.firstChild.click()
+            console.log("success")
+            clearInterval(readyStateCheckInterval);
+        }
+    }
